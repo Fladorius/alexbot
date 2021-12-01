@@ -20,8 +20,8 @@ export interface Server {
 }
 
 export interface ZoneRankings {
-  bestPerformanceAverage: number;
-  medianPerformanceAverage: number;
+  bestPerformanceAverage?: number;
+  medianPerformanceAverage?: number;
   difficulty: number;
   metric: string;
   partition: number;

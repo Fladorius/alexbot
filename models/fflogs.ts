@@ -122,19 +122,19 @@ class FFLogs {
     });
   }
 
-  getColor(percentile: number) {
-    if (percentile >= 99) {
-      return 0xe268a8;
-    } else if (percentile >= 95) {
-      return 0xff8000;
-    } else if (percentile >= 75) {
-      return 0xa335ee;
-    } else if (percentile >= 50) {
-      return 0x0070ff;
-    } else if (percentile >= 25) {
+  getColor(percentile?: number) {
+    if (!percentile || percentile < 25) {
+      return 0x666666;
+    } else if (percentile < 50) {
       return 0x1eff00;
+    } else if (percentile < 75) {
+      return 0x0070ff;
+    } else if (percentile < 95) {
+      return 0xa335ee;
+    } else if (percentile < 99) {
+      return 0xe268a8;
     }
-    return 0x666666;
+    return 0xe5cc80;
   }
 }
 

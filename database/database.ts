@@ -11,7 +11,8 @@ interface Schema {
 
 interface User {
   id: string; // Discord ID
-  fflogsId: number;
+  fflogsId?: number;
+  alexbux?: number;
 }
 
 class Database {

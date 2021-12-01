@@ -6,6 +6,7 @@ import potatReact from "./potatReact/potatReact";
 import fuckYeah from "./fuckYeah/fuckYeah";
 import register from "./register/register";
 import parse from "./parse/parse";
+import alexbux from "./alexbux/alexbux";
 
 export const commands: ((message: Message) => void)[] = [
   potatReact,
@@ -15,4 +16,5 @@ export const commands: ((message: Message) => void)[] = [
   fuckYeah,
   register,
   parse,
+  alexbux,
 ];

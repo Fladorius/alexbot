@@ -78,4 +78,8 @@ export class Message {
   isByAuthor(id: string) {
     return this.message.author.id === id;
   }
+
+  isByAdmin() {
+    return this.isByAuthor("100470573674536960");
+  }
 }

@@ -11,10 +11,7 @@ export class Message {
     this.message = message;
 
     // Lowercased string with punctuation removed
-    this.cleanedString = message.content
-      .toLowerCase()
-      .replace(/[^\p{L}\s]/gu, "")
-      .trim();
+    this.cleanedString = message.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").trim();
 
     this.words = new Set(this.cleanedString.split(" "));
   }
@@ -28,7 +25,7 @@ export class Message {
   }
 
   hasMentions() {
-    const mentioned = this.message.mentions.members;
+    const mentioned = this.message.mentions.members || this.message.mentions.roles;
     return Boolean(mentioned && mentioned.size);
   }
 

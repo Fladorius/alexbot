@@ -18,25 +18,12 @@ export default async function parse(message: Message) {
     const character = data.characterData.character;
     const rankings = character.zoneRankings;
 
-    let color = 0x666666;
-    if (rankings.bestPerformanceAverage >= 99) {
-      color = 0xe268a8;
-    } else if (rankings.bestPerformanceAverage >= 95) {
-      color = 0xff8000;
-    } else if (rankings.bestPerformanceAverage >= 75) {
-      color = 0xa335ee;
-    } else if (rankings.bestPerformanceAverage >= 50) {
-      color = 0x0070ff;
-    } else if (rankings.bestPerformanceAverage >= 25) {
-      color = 0x1eff00;
-    }
-
     embed.setTitle(
       `${character.name} @ ${
         character.server.slug[0]?.toUpperCase() + character.server.slug.slice(1)
       }`
     );
-    embed.setColor(color);
+    embed.setColor(fflogs.getColor(rankings.bestPerformanceAverage));
     embed.setURL(`https://www.fflogs.com/character/id/${character.id}`);
 
     function round(number: number) {

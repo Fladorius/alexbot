@@ -117,6 +117,21 @@ class FFLogs {
       id,
     });
   }
+
+  getColor(percentile: number) {
+    if (percentile >= 99) {
+      return 0xe268a8;
+    } else if (percentile >= 95) {
+      return 0xff8000;
+    } else if (percentile >= 75) {
+      return 0xa335ee;
+    } else if (percentile >= 50) {
+      return 0x0070ff;
+    } else if (percentile >= 25) {
+      return 0x1eff00;
+    }
+    return 0x666666;
+  }
 }
 
 export const fflogs = new FFLogs();

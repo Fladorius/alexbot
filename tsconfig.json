@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "esnext",
-        "esModuleInterop": true,
-        "moduleResolution": "node",
-        "allowJs": false,
-        "incremental": true,
-        "alwaysStrict": true,
-        "allowUnreachableCode": false,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "noImplicitReturns": true,
-        "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-    }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "incremental": true,
+    "alwaysStrict": true,
+    "allowUnreachableCode": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true
   }
+}

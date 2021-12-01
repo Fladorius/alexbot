@@ -5,6 +5,7 @@ import whenEndwalker from "./whenEndwalker/whenEndwalker";
 import potatReact from "./potatReact/potatReact";
 import fuckYeah from "./fuckYeah/fuckYeah";
 import register from "./register/register";
+import parse from "./parse/parse";
 
 export const commands: ((message: Message) => void)[] = [
   potatReact,
@@ -13,4 +14,5 @@ export const commands: ((message: Message) => void)[] = [
   whenEndwalker,
   fuckYeah,
   register,
+  parse,
 ];

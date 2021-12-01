@@ -33,6 +33,10 @@ async function initialize() {
     process.env.FFLOGS_CLIENT_SECRET
   );
 
+  client.on("ready", () => {
+    console.log("Discord bot accepting new requests");
+  });
+
   client.on("messageCreate", function (message) {
     for (const command of commands) {
       const m = new Message(message);

@@ -1,4 +1,8 @@
-import { Message as DiscordMessage, TextChannel } from "discord.js";
+import {
+  Message as DiscordMessage,
+  MessageEmbed,
+  TextChannel,
+} from "discord.js";
 import { client } from "./client";
 
 export class Message {
@@ -37,6 +41,11 @@ export class Message {
     const mentioned =
       this.message.mentions.members || this.message.mentions.roles;
     return Boolean(mentioned && mentioned.size);
+  }
+
+  embed(embed: MessageEmbed) {
+    this.message.channel.send({ embeds: [embed] });
+    this.wasResponseSent = true;
   }
 
   reply(response: string) {

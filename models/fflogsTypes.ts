@@ -9,7 +9,12 @@ export interface CharacterData {
 export interface Character {
   id: number;
   name: string;
+  server: Server;
   zoneRankings: ZoneRankings;
+}
+
+export interface Server {
+  slug: string;
 }
 
 export interface ZoneRankings {

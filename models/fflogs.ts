@@ -98,7 +98,7 @@ class FFLogs {
     return response.characterData.character.id;
   }
 
-  async fetchCharacterData(id: number) {
+  async getCharacterData(id: number) {
     const query = gql`
       query ($id: Int) {
         characterData {
@@ -106,6 +106,9 @@ class FFLogs {
             id
             name
             zoneRankings
+            server {
+              slug
+            }
           }
         }
       }

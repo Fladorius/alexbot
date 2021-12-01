@@ -3,6 +3,7 @@ import { commands } from "./commands/commands";
 import { client } from "./models/client";
 import { fflogs } from "./models/fflogs";
 import { Message } from "./models/message";
+import { database } from "./database/database";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ async function initialize() {
     return;
   }
 
+  database.read();
   await fflogs.initialize(
     process.env.FFLOGS_CLIENT_ID,
     process.env.FFLOGS_CLIENT_SECRET

@@ -11,6 +11,8 @@ export interface Character {
   name: string;
   server: Server;
   zoneRankings: ZoneRankings;
+  tea: ZoneRankings;
+  sbUlts: ZoneRankings;
 }
 
 export interface Server {

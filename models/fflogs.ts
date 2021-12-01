@@ -100,12 +100,14 @@ class FFLogs {
 
   async getCharacterData(id: number) {
     const query = gql`
-      query ($id: Int) {
+      query ($id: Int, $teaZoneId: Int, $sbUltsZoneId: Int) {
         characterData {
           character(id: $id) {
             id
             name
             zoneRankings
+            tea: zoneRankings(zoneID: $teaZoneId)
+            sbUlts: zoneRankings(zoneID: $sbUltsZoneId)
             server {
               slug
             }
@@ -115,6 +117,8 @@ class FFLogs {
     `;
     return await this.client.request<CharacterDataResponse>(query, {
       id,
+      teaZoneId: 32,
+      sbUltsZoneId: 30,
     });
   }
 

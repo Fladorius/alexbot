@@ -98,7 +98,7 @@ class FFLogs {
     return response.characterData.character.id;
   }
 
-  async getCharacterData(id: number) {
+  async getParseData(id: number) {
     const query = gql`
       query ($id: Int, $teaZoneId: Int, $sbUltsZoneId: Int) {
         characterData {

@@ -14,8 +14,7 @@ export default async function parse(message: Message) {
       return;
     }
 
-    const data = await fflogs.getCharacterData(user.fflogsId);
-    console.log(data);
+    const data = await fflogs.getParseData(user.fflogsId);
     const embed = new MessageEmbed();
     const character = data.characterData.character;
     const rankings = character.zoneRankings;

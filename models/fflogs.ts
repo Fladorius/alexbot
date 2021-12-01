@@ -12,6 +12,35 @@ class FFLogs {
     this.client = new GraphQLClient("https://www.fflogs.com/api/v2/client");
   }
 
+  parseCharacterUrl(url: URL) {
+    if (url.host !== "www.fflogs.com") {
+      return null;
+    }
+
+    // Handle ID based URLs
+    let match = url.pathname.match(/\/id\/(\d+)/) || [];
+    if (match[1]) {
+      return {
+        id: Number(match[1]),
+      };
+    }
+
+    // Handle character name based URLs
+    match = url.pathname.match(/character\/(\w+)\/(\w+)\/(\S+)/) || [];
+    const region = match[1];
+    const server = match[2];
+    const name = match[3];
+    if (region && server && name) {
+      return {
+        region,
+        server,
+        name: decodeURI(name),
+      };
+    }
+
+    return null;
+  }
+
   async initialize(clientId: string, clientSecret: string) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
@@ -37,6 +66,36 @@ class FFLogs {
       "authorization",
       `Bearer ${response.body["access_token"]}`
     );
+  }
+
+  async getUserId(name: string, serverSlug: string, serverRegion: string) {
+    const response = await this.client.request<{
+      characterData: {
+        character: {
+          id: number;
+        };
+      };
+    }>(
+      gql`
+        query ($name: String, $serverSlug: String, $serverRegion: String) {
+          characterData {
+            character(
+              name: $name
+              serverSlug: $serverSlug
+              serverRegion: $serverRegion
+            ) {
+              id
+            }
+          }
+        }
+      `,
+      {
+        name,
+        serverSlug,
+        serverRegion,
+      }
+    );
+    return response.characterData.character.id;
   }
 
   async fetchCharacterData(id: number) {

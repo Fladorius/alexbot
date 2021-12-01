@@ -11,9 +11,18 @@ export class Message {
     this.message = message;
 
     // Lowercased string with punctuation removed
-    this.cleanedString = message.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").trim();
+    this.cleanedString = message.content
+      .toLowerCase()
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+      .trim();
 
     this.words = new Set(this.cleanedString.split(" "));
+  }
+
+  getUrls() {
+    return (this.message.content.match(/\bhttps?\:\/\/\S+/g) || []).map(
+      (url) => new URL(url)
+    );
   }
 
   hasWord(target: string) {
@@ -25,8 +34,14 @@ export class Message {
   }
 
   hasMentions() {
-    const mentioned = this.message.mentions.members || this.message.mentions.roles;
+    const mentioned =
+      this.message.mentions.members || this.message.mentions.roles;
     return Boolean(mentioned && mentioned.size);
+  }
+
+  reply(response: string) {
+    this.message.reply(response);
+    this.wasResponseSent = true;
   }
 
   respond(response: string) {
@@ -45,6 +60,10 @@ export class Message {
     if (emoji) {
       this.message.react(emoji);
     }
+  }
+
+  getAuthorId() {
+    return this.message.author.id;
   }
 
   isByAuthor(id: string) {

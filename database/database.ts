@@ -11,14 +11,7 @@ interface Schema {
 
 interface User {
   id: string; // Discord ID
-  fflogs?: FFLogsInfo;
-}
-
-interface FFLogsInfo {
-  name: string;
-  id: string;
-  region: string;
-  server: string;
+  fflogsId: number;
 }
 
 class Database {
